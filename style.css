@@ -1,0 +1,63 @@
+body {
+  font-family: Arial;
+  margin: 0px;
+}
+
+h1 {
+  text-align: center;
+}
+
+main.game-page {
+  display: flex;
+  flex-direction: row;
+}
+
+.bottom-two-match {
+  display:flex;
+  justify-content: space-around;
+}
+.completed-match {
+  border: 1px solid white;
+  width: 60px;
+  height: 120px;
+}
+.game-section {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #CBD0D6;
+  width: 80%;
+  height: 100vh;
+}
+.guessing-cards {
+  background-color: green;
+  height: 300px;
+  width: 200px;
+  text-align: center;
+  font-size: 100px;
+}
+.matched-cards {
+  width: 100%;
+}
+.scoreboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.side-panel {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 20%;
+  height: 100vh;
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+.top-three-match {
+  display: flex;
+  justify-content: space-around;
+
+}
