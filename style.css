@@ -1,0 +1,159 @@
+body {
+  font-family: Arial;
+  margin: 0px;
+}
+
+h1 {
+  text-align: center;
+}
+
+header {
+  align-items: center;
+  display: flex;
+  height: 10vh;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+/* MAIN PAGE 1 */
+
+main.game-page {
+  display: flex;
+  flex-direction: row;
+  height: 90vh;
+}
+/* ASIDE */
+
+.bottom-two-match {
+  display:flex;
+  justify-content: center;
+}
+
+.completed-match {
+  background-color: #808080;
+  margin: 12px;
+  width: 50px;
+  height: 70px;
+}
+
+.matched-cards {
+  width: 100%;
+}
+
+.match-counter {
+  margin-top: 60px;
+  text-transform: uppercase;
+}
+
+.match-counter-number {
+  text-align: center;
+  font-size: 100px;
+  font-weight: bold;
+  margin: 0;
+  }
+  
+.scoreboard {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 200px 0 0 0;
+  ;
+}
+  
+.scoreboard p {
+  font-weight: 100;
+  margin: 10px;
+  text-transform: uppercase;
+}
+
+.side-panel {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 20%;
+  height: 100%;
+  background-color: #000000;
+  color: #FFFFFF;
+}
+  
+.top-three-match {
+  display: flex;
+  justify-content: center;
+}  
+
+/* GAME SECTION */
+
+.game-section {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #CBD0D6;
+  width: 80%;
+  height: 90vh;
+}
+
+.guessing-cards {
+  background-color: white;
+  border: 5px solid black;
+  box-shadow: 7px 4px 15px 0px rgba(0,0,0,0.42);
+  color: black;
+  font-size: 100px;
+  font-weight: bold;
+  height: 300px;
+  text-align: center;
+  width: 200px;
+}
+
+/* Win Page */
+#total-time {
+  font-size: 60px;
+}
+
+.game-buttons {
+  background-color: black;
+  color: white;
+  font-size: 25px;
+  font-weight: 200;
+  margin: 40px 30px;
+  padding: 20px;
+  width: 33%;
+}
+
+.play-again-button:hover,
+.play-again-button:focus {
+  cursor: pointer;
+  outline: none;
+}
+
+.play-buttons {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+}
+
+.win-banner h2{
+  font-size: 100px;
+  margin: 0px 0px 60px;
+}
+
+.win-page {
+  align-items: center;
+  background-color: lightblue;
+  display: flex;
+  height: 90vh;
+  justify-content: center;
+  margin: 0;
+}
+
+.win-stats p{
+  font-size: 40px;
+  margin: 0px;
+  text-align: center;
+}
+
+/* EFFECT CLASSES */
+
+.hide {
+  display: none !important;
+}
