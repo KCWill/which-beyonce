@@ -12,6 +12,7 @@
   </header>
   <main class='game-page'>
     <aside class='side-panel'>
+      <input type='button' onclick=startGame()>
       <section class='match-counter'>
         <h2>Matches this round</h2>
         <p class='match-counter-number'>0</p>
@@ -35,7 +36,7 @@
       </section>
     </aside>
     <section class='game-section'>
-      <div class='guessing-cards'>
+      <!-- <div class='guessing-cards'>
         <p>W</p>
       </div>
       <div class='guessing-cards'>
@@ -64,10 +65,10 @@
       </div>
       <div class='guessing-cards'>
         <p>W</p>
-      </div>
+      </div> -->
     </section>
   </main>
-  <main class='win-page'>
+  <main class='win-page hide'>
     <section>
       <section class='win-banner'>
         <h2>Congratulations!</h2>
@@ -83,5 +84,7 @@
     </section>
   </main>
 </body>
-
+<script src="main.js"></script>
+<script src="card.js"></script>
+<script src="deck.js"></script>
 </html>

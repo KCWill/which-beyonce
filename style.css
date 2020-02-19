@@ -51,7 +51,7 @@ main.game-page {
   font-weight: bold;
   margin: 0;
   }
-  
+
 .scoreboard {
   align-items: center;
   display: flex;
@@ -59,7 +59,7 @@ main.game-page {
   margin: 200px 0 0 0;
   ;
 }
-  
+
 .scoreboard p {
   font-weight: 100;
   margin: 10px;
@@ -75,11 +75,11 @@ main.game-page {
   background-color: #000000;
   color: #FFFFFF;
 }
-  
+
 .top-three-match {
   display: flex;
   justify-content: center;
-}  
+}
 
 /* GAME SECTION */
 
@@ -95,6 +95,9 @@ main.game-page {
 
 .guessing-cards {
   background-color: white;
+  background-image: url("./kyleimages/cat.png");
+  background-position: center bottom;
+  background-size: cover;
   border: 5px solid black;
   box-shadow: 7px 4px 15px 0px rgba(0,0,0,0.42);
   color: black;
