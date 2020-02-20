@@ -1,3 +1,11 @@
+var gameSection = document.querySelector('.game-section');
+
+
+gameSection.addEventListener('click',flipCard);
+
+
+
+
 function startGame() {
   var card1 = new Card(1, 1);
   var card2 = new Card(2, 1);
@@ -9,16 +17,16 @@ function startGame() {
   var card8 = new Card(8, 4);
   var card9 = new Card(9, 5);
   var card10 = new Card(10, 5);
-
   var cardArray = [
     card1, card2, card3, card4, card5, card6, card7, card8, card9, card10
   ];
-
   var deck1 = new Deck(cardArray);
-
   for (var i=0; i<cardArray.length; i++){
-    document.querySelector('.game-section').innerHTML += `<div class='guessing-cards'><p>${cardArray[i].cardId}</p></div>`;
+    document.querySelector('.game-section').innerHTML += `<div class='guessing-cards' data-cardid='${cardArray[i].cardId}' data-matchedInfo='${cardArray[i].matchedInfo}' data-matched='${cardArray[i].matched}' data->KW</div>`;
   }
+  return cardArray;
 }
 
-var gameSection = document.querySelector('game-section');
+function flipCard(event) {
+    event.target.innerHTML = `${event.target.dataset.cardid}`;
+  }
