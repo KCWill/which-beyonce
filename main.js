@@ -1,10 +1,6 @@
 var gameSection = document.querySelector('.game-section');
 
-
-gameSection.addEventListener('click',flipCard);
-
-
-
+// gameSection.addEventListener('click',flipCard);
 
 function startGame() {
   var card1 = new Card(1, 1);
@@ -22,11 +18,24 @@ function startGame() {
   ];
   var deck1 = new Deck(cardArray);
   for (var i=0; i<cardArray.length; i++){
-    document.querySelector('.game-section').innerHTML += `<div class='guessing-cards' data-cardid='${cardArray[i].cardId}' data-matchedInfo='${cardArray[i].matchedInfo}' data-matched='${cardArray[i].matched}' data->KW</div>`;
+    document.querySelector('.game-section').innerHTML += `
+    <div class='card-container'>
+      <div class='the-card'>
+        <div class='guessing-cards front' data-cardid='${cardArray[i].cardId}' data-matchedInfo='${cardArray[i].matchedInfo}' data-matched='${cardArray[i].matched}'>
+          KW
+        </div>
+        <div class='guessing-cards back' data-cardid='${cardArray[i].cardId}' data-matchedInfo='${cardArray[i].matchedInfo}' data-matched='${cardArray[i].matched}'>
+          ${cardArray[i].cardId}
+        </div>
+      </div>
+    </div>`;
+    
   }
   return cardArray;
 }
 
-function flipCard(event) {
-    event.target.innerHTML = `${event.target.dataset.cardid}`;
+document.getElementById('container').onclick = function flipCard(event) {
+  var closest = event.target.closest('.the-card');
+  closest.classList.toggle('flip');
+    // event.target.innerHTML = `${event.target.dataset.cardid}`;
   }

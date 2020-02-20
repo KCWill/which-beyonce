@@ -82,6 +82,37 @@ main.game-page {
 }
 
 /* GAME SECTION */
+.back {
+  background-image: url("./kyleimages/cat.png");
+  background-position: center bottom;
+  background-size: cover;
+  transform: rotateY(180deg);
+}
+
+.card-container {
+  perspective: 1000px;
+  position: relative;
+}
+
+.card-container,
+.front,
+.back {
+  height: 300px;
+  width: 200px;
+}
+
+.front,
+.back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.front {
+  transform: rotateY(0deg);
+  z-index: 2;
+}
 
 .game-section {
   display: flex;
@@ -95,17 +126,22 @@ main.game-page {
 
 .guessing-cards {
   background-color: white;
-  background-image: url("./kyleimages/cat.png");
-  background-position: center bottom;
-  background-size: cover;
   border: 5px solid black;
   box-shadow: 7px 4px 15px 0px rgba(0,0,0,0.42);
   color: black;
   font-size: 100px;
   font-weight: bold;
-  height: 300px;
   text-align: center;
-  width: 200px;
+}
+
+.the-card {
+  position: relative;
+  transition: 0.8s;
+  transform-style: preserve-3d;
+}
+
+.the-card.flip {
+  transform: rotateY(180deg);
 }
 
 /* Win Page */
