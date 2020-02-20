@@ -1,22 +1,22 @@
 var gameSection = document.querySelector('.game-section');
-
+var container = document.getElementById('container');
 // gameSection.addEventListener('click',flipCard);
-
+var card1 = new Card(1, 1);
+var card2 = new Card(2, 1);
+var card3 = new Card(3, 2);
+var card4 = new Card(4, 2);
+var card5 = new Card(5, 3);
+var card6 = new Card(6, 3);
+var card7 = new Card(7, 4);
+var card8 = new Card(8, 4);
+var card9 = new Card(9, 5);
+var card10 = new Card(10, 5);
+var cardArray = [
+  card1, card2, card3, card4, card5, card6, card7, card8, card9, card10
+];
+deck1 = new Deck(cardArray);
 function startGame() {
-  var card1 = new Card(1, 1);
-  var card2 = new Card(2, 1);
-  var card3 = new Card(3, 2);
-  var card4 = new Card(4, 2);
-  var card5 = new Card(5, 3);
-  var card6 = new Card(6, 3);
-  var card7 = new Card(7, 4);
-  var card8 = new Card(8, 4);
-  var card9 = new Card(9, 5);
-  var card10 = new Card(10, 5);
-  var cardArray = [
-    card1, card2, card3, card4, card5, card6, card7, card8, card9, card10
-  ];
-  var deck1 = new Deck(cardArray);
+
   for (var i=0; i<cardArray.length; i++){
     document.querySelector('.game-section').innerHTML += `
     <div class='card-container'>
@@ -29,13 +29,23 @@ function startGame() {
         </div>
       </div>
     </div>`;
-    
   }
   return cardArray;
 }
 
-document.getElementById('container').onclick = function flipCard(event) {
-  var closest = event.target.closest('.the-card');
-  closest.classList.toggle('flip');
-    // event.target.innerHTML = `${event.target.dataset.cardid}`;
+
+
+  container.onclick = function flipCard(event) {
+    var closest = event.target.closest('.the-card');
+    closest.classList.toggle('flip');
+    var selected = event.target.dataset.cardid;
+    console.log("wtf", selected);
+    deck1.addSelected(selected);
   }
+
+
+//   container.onclick = function pushSelected(event) {
+//     var selected = event.target.closest('.data-cardid');
+//     var selectedId = selected.id
+//     selectedCards.push(selectedId);
+// }
