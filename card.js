@@ -8,7 +8,7 @@ class Card {
   match() {
     this.matched = true;
   }
-  pushSelected(selected){
-    this.selected = true;
+  pushSelected(){
+    this.selected = !this.selected;
   }
 }
