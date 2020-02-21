@@ -41,9 +41,9 @@ function startGame() {
     var selected = event.target.dataset.cardid;
     console.log("wtf", selected);
     // event.target.
-    // if (deck1.cards[event.target.dataset.cardId].selected === false){
-    // deck1.addSelected(selected);
-    // } else if (deck1.cards.selected === true){
+    if (deck1.cards[event.target.dataset.cardId - 1].selected === false){
+    deck1.addSelected(selected);
+    } else if (deck1.cards[event.target.dataset.cardId - 1].selected === true){
       deck1.removeSelected(selected)
     }
   
