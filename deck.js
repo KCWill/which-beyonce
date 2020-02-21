@@ -19,12 +19,21 @@ class Deck {
     if (this.selectedCards.length < 2){
     this.selectedCards.push(this.cards[selectedId]);
     }
+
     console.log("blarh", this.selectedCards);
     // for (var i = 0; i < this.cards.length; i++){
     //   if (this.cards[i].cardid == selectedId){
     //     card = this.cards[i];
     //   }
   };
+
+  removeSelected(selectedId){
+    if (this.selectedCards[0].cardId === selectedId){
+      this.selectedCards.shift();
+    } else if(this.selectedCards[i].cardId === selectedId){
+      this.selectedCards.pop();
+    }
+  }
 	checkSelectedCards(select1, select2) {
 	//take each selected card and run isMatched()
   if (select1.matchedInfo === select2.matchedInfo) {

@@ -10,6 +10,5 @@ class Card {
   }
   pushSelected(selected){
     this.selected = true;
-    this.selectedCards.push(selected)
   }
 }
