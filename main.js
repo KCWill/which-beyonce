@@ -32,19 +32,17 @@ function startGame() {
   return cardArray;
 }
 
-
-
-  container.onclick = function flipCard(event) {
-    var closest = event.target.closest('.the-card');
-    closest.classList.toggle('flip');
-    var currentSelected = event.target.dataset.cardid;
-    console.log("wtf", currentSelected);
-    if (deck1.cards[currentSelected - 1].isSelected === false){
+container.onclick = function flipCard(event) {
+  var closest = event.target.closest('.the-card');
+  closest.classList.toggle('flip');
+  var currentSelected = event.target.dataset.cardid;
+  console.log("wtf", currentSelected);
+  if (deck1.cards[currentSelected - 1].isSelected === false){
     deck1.addSelected(currentSelected);
   } else if (deck1.cards[currentSelected - 1].isSelected === true){
       deck1.removeSelected(currentSelected)
-    }
   }
+}
 
 
 //   container.onclick = function pushSelected(event) {

@@ -14,18 +14,24 @@ class Deck {
     // var randomItem =  myArray[Math.floor(Math.random()*myArray.length)];
     // return display.innerHTML = randomItem
   };
+  
   addSelected(selectedId) {
     selectedId--;
     if (this.selectedCards.length < 2) {
       this.selectedCards.push(this.cards[selectedId]);
       this.cards[selectedId].toggleSelected();
     }
+    if (this.selectedCards.length === 2) {
+      this.checkSelectedCards()
+      };
     console.log("blarh", this.selectedCards);
     // for (var i = 0; i < this.cards.length; i++){
     //   if (this.cards[i].cardid == selectedId){
     //     card = this.cards[i];
     //   }
+
   };
+
   removeSelected(selectedId) {
     selectedId--;
     if (this.selectedCards[0].cardId === selectedId + 1){
@@ -36,17 +42,19 @@ class Deck {
     this.selectedCards.pop();
   }
     console.log('okurrrr', this.selectedCards)
-  }
+  };
+
   checkSelectedCards() {
     //take each selected card and run isMatched()
     if (this.selectedCards[0].matchedInfo === this.selectedCards[1].matchedInfo) {
       this.selectedCards[0].match();
       this.selectedCards[1].match();
-      this.movetoMatched(this.selectedCards[0], this.selectedCards[1]);
+      this.moveToMatched();
     }
     console.log('Hola!', this.matchedArray);
     return
   };
+
   moveToMatched() {
     this.matchedArray.push(this.selectedCards[0]);
     this.matchedArray.push(this.selectedCards[1]);
