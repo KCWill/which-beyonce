@@ -14,7 +14,7 @@ class Deck {
     // var randomItem =  myArray[Math.floor(Math.random()*myArray.length)];
     // return display.innerHTML = randomItem
   };
-  
+
   addSelected(selectedId) {
     selectedId--;
     if (this.selectedCards.length < 2) {
@@ -52,12 +52,14 @@ class Deck {
       this.moveToMatched();
     }
     console.log('Hola!', this.matchedArray);
+    this.selectedCards =[];
     return
   };
 
   moveToMatched() {
     this.matchedArray.push(this.selectedCards[0]);
     this.matchedArray.push(this.selectedCards[1]);
+
     //take matched pairs out of array
     //place matched pair into found matches area
   };
