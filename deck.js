@@ -26,7 +26,6 @@ class Deck {
     //     card = this.cards[i];
     //   }
   };
-
   removeSelected(selectedId) {
     selectedId--;
     if (this.selectedCards[0].cardId === selectedId + 1){
@@ -38,18 +37,19 @@ class Deck {
   }
     console.log('okurrrr', this.selectedCards)
   }
-
-  checkSelectedCards(select1, select2) {
+  checkSelectedCards() {
     //take each selected card and run isMatched()
-    if (select1.matchedInfo === select2.matchedInfo) {
-      select1.match();
-      select2.match();
-      this.movetoMatched(select1, select2);
+    if (this.selectedCards[0].matchedInfo === this.selectedCards[1].matchedInfo) {
+      this.selectedCards[0].match();
+      this.selectedCards[1].match();
+      this.movetoMatched(this.selectedCards[0], this.selectedCards[1]);
     }
+    console.log('Hola!', this.matchedArray);
+    return
   };
-  moveToMatched(select1, select2) {
-    this.matchedArray.push(select1);
-    this.matchedArray.push(select2);
+  moveToMatched() {
+    this.matchedArray.push(this.selectedCards[0]);
+    this.matchedArray.push(this.selectedCards[1]);
     //take matched pairs out of array
     //place matched pair into found matches area
   };
