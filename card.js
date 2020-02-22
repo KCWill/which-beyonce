@@ -3,12 +3,12 @@ class Card {
     this.cardId = cardId;
     this.matchedInfo = matchedInfo;
     this.matched = false;
-    this.selected = false;
+    this.isSelected = false;
   }
   match() {
     this.matched = true;
   }
-  pushSelected(){
-    this.selected = !this.selected;
+  toggleSelected(){
+    this.isSelected = !this.isSelected;
   }
 }
