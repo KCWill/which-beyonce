@@ -37,7 +37,7 @@ container.onclick = function flipCard(event) {
   var closest = event.target.closest('.the-card');
   closest.classList.toggle('flip');
   var currentSelected = event.target.dataset.cardid;
-  console.log("wtf", currentSelected);
+  console.log("currentSelected", currentSelected);
   if (deck1.cards[currentSelected - 1].isSelected === false){
     deck1.addSelected(currentSelected);
   } else if (deck1.cards[currentSelected - 1].isSelected === true){
@@ -49,13 +49,13 @@ container.onclick = function flipCard(event) {
 function hideMatched(){
   var idArray =[];
   for (var i = 0; i < deck1.matchedArray.length; i++){
-    console.log('match', deck1.matchedArray);
+    // console.log('match', deck1.matchedArray);
     idArray.push(deck1.matchedArray[i].cardId);
-    console.log('ids', idArray);
+    // console.log('ids', idArray);
     var c = document.querySelector('.game-section').childNodes;
     childSelector = (2*idArray[i])-1;
-    console.log('CS',childSelector);
-    console.log('nodes',c)
+    // console.log('CS',childSelector);
+    // console.log('nodes',c)
     c[childSelector].classList.add('hide');
     }
 }
