@@ -1,5 +1,6 @@
 var gameSection = document.querySelector('.game-section');
 var container = document.getElementById('container');
+// gameSection.addEventListener('click',flipCard);
 var card1 = new Card(1, 1);
 var card2 = new Card(2, 1);
 var card3 = new Card(3, 2);
@@ -13,9 +14,9 @@ var card10 = new Card(10, 5);
 var cardArray = [
   card1, card2, card3, card4, card5, card6, card7, card8, card9, card10
 ];
-var deck1 = new Deck(cardArray);
-
+deck1 = new Deck(cardArray);
 function startGame() {
+
   for (var i=0; i<cardArray.length; i++){
     document.querySelector('.game-section').innerHTML += `
     <div class='card-container'>
@@ -37,12 +38,13 @@ function startGame() {
   container.onclick = function flipCard(event) {
     var closest = event.target.closest('.the-card');
     closest.classList.toggle('flip');
-    var currentSelected = event.target.dataset.cardid;
-    console.log("wtf", currentSelected);
-    if (deck1.cards[currentSelected - 1].isSelected === false){
-    deck1.addSelected(currentSelected);
-  } else if (deck1.cards[currentSelected - 1].isSelected === true){
-      deck1.removeSelected(currentSelected)
+    var selected = event.target.dataset.cardid;
+    console.log("wtf", selected);
+    // event.target.
+    if (deck1.cards[event.target.dataset.cardId - 1].selected === false){
+    deck1.addSelected(selected);
+    } else if (deck1.cards[event.target.dataset.cardId - 1].selected === true){
+      deck1.removeSelected(selected)
     }
   }
 
