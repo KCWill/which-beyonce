@@ -194,5 +194,5 @@ main.game-page {
 /* EFFECT CLASSES */
 
 .hide {
-  display: none !important;
+  visibility: hidden !important;
 }
