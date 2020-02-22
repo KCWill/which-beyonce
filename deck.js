@@ -24,7 +24,7 @@ class Deck {
     if (this.selectedCards.length === 2) {
       this.checkSelectedCards()
       };
-    console.log("blarh", this.selectedCards);
+    console.log("selectedCards", this.selectedCards);
     // for (var i = 0; i < this.cards.length; i++){
     //   if (this.cards[i].cardid == selectedId){
     //     card = this.cards[i];
@@ -41,7 +41,7 @@ class Deck {
     this.cards[selectedId].toggleSelected();
     this.selectedCards.pop();
   }
-    console.log('okurrrr', this.selectedCards)
+    console.log('selectedCards', this.selectedCards);
   };
 
   checkSelectedCards() {
@@ -50,9 +50,10 @@ class Deck {
       this.selectedCards[0].match();
       this.selectedCards[1].match();
       this.moveToMatched();
+      this.selectedCards =[];
     }
-    console.log('Hola!', this.matchedArray);
-    this.selectedCards =[];
+    console.log('matchedArray', this.matchedArray);
+    console.log(this.cards);
     return
   };
 
