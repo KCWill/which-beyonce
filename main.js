@@ -1,6 +1,11 @@
 var gameSection = document.querySelector('.game-section');
 var container = document.getElementById('container');
 var allCards = document.querySelectorAll(`[data-cardid~=""]`);
+var matchCountNum = document.querySelector('.match-counter-number');
+
+//initialize counter
+matchCountNum.innerHTML = 0;
+
 var card1 = new Card(1, 1);
 var card2 = new Card(2, 1);
 var card3 = new Card(3, 2);
@@ -31,6 +36,10 @@ function startGame() {
     </div>`;
   }
   return cardArray;
+}
+
+function updateCounter(){
+  matchCountNum.innerHTML = (deck1.matchedArray.length/2);
 }
 
 container.onclick = function flipCard(event) {
@@ -68,6 +77,7 @@ function hideMatched(){
     console.log('nodes',c)
     c[childSelector].classList.add('hide');
     }
+    updateCounter();
 }
 
 
