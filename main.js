@@ -1,7 +1,6 @@
 var gameSection = document.querySelector('.game-section');
 var container = document.getElementById('container');
 var allCards = document.querySelectorAll(`[data-cardid~=""]`);
-var lockBoard = false;
 var card1 = new Card(1, 1);
 var card2 = new Card(2, 1);
 var card3 = new Card(3, 2);
@@ -42,7 +41,7 @@ container.onclick = function flipCard(event) {
     grabCards();
     hideMatched();
   } else if (deck1.cards[currentSelected - 1].isSelected === true){
-      deck1.removeSelected(currentSelected)
+      deck1.removeSelected(currentSelected);
       closest.classList.toggle('flip');
   }
 }
@@ -52,8 +51,8 @@ function grabCards(){
   console.log("currentSelected", currentSelected);
   if (deck1.cards[currentSelected - 1].isSelected === false){
     deck1.addSelected(currentSelected);
-  // } else if (deck1.cards[currentSelected - 1].isSelected === true){
-  //     deck1.removeSelected(currentSelected)
+  } else if (deck1.cards[currentSelected - 1].isSelected === true){
+    deck1.removeSelected(currentSelected);
   }
 }
 
@@ -66,7 +65,7 @@ function hideMatched(){
     var c = document.querySelector('.game-section').childNodes;
     childSelector = (2*idArray[i])-1;
     // console.log('CS',childSelector);
-    // console.log('nodes',c)
+    console.log('nodes',c)
     c[childSelector].classList.add('hide');
     }
 }
