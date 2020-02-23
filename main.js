@@ -1,6 +1,15 @@
 var gameSection = document.querySelector('.game-section');
 var container = document.getElementById('container');
 var allCards = document.querySelectorAll(`[data-cardid~=""]`);
+var matchCountNum = document.querySelector('.match-counter-number');
+var timerDisplay = document.querySelector('#total-time')
+var gamePage = document.querySelector('.game-page');
+var winPage = document.querySelector('.win-page');
+var start;
+//initialize counter
+matchCountNum.innerHTML = 0;
+
+
 var card1 = new Card(1, 1);
 var card2 = new Card(2, 1);
 var card3 = new Card(3, 2);
@@ -17,6 +26,8 @@ var cardArray = [
 var deck1 = new Deck(cardArray);
 
 function startGame() {
+  // findElapsedTime('start');
+  start = Date.now();
   for (var i=0; i<cardArray.length; i++){
     document.querySelector('.game-section').innerHTML += `
     <div class='card-container'>
@@ -29,9 +40,42 @@ function startGame() {
         </div>
       </div>
     </div>`;
-  }
-  return cardArray;
+  };
+};
+
+function updateCounter(){
+  matchCountNum.innerHTML = (deck1.matchedArray.length/2);
+  if (deck1.matchedArray.length === 10){
+    setTimeout(function() {endGame()},1500);
+  };
+};
+
+function endGame(){
+  findElapsedTime();
+  //stall one second
+  gamePage.classList.add('hidePage');
+  winPage.classList.remove('hidePage');
 }
+
+function findElapsedTime(){
+  var elapsedTime = Date.now()-start;
+  var minutes = Math.floor((elapsedTime/1000)/60);
+  var seconds = (elapsedTime/1000)%60;
+  if (seconds < 10){
+    timerDisplay.innerHTML = `${minutes}:0${seconds.toFixed(2)}`;
+  } else {
+  var formatTime =
+  timerDisplay.innerHTML = `${minutes}:${seconds.toFixed(2)}`;
+};
+}
+// function findElapsedTime(startStop){
+//   if (startStop === 'start'){
+//     start = Date.now();
+//   } else if (startStop === 'end'){
+//     var elapsedTime = Date.now() - start;
+//     timerDisplay.innerHTML = elapsedTime;
+//   };
+// };
 
 container.onclick = function flipCard(event) {
   var closest = event.target.closest('.the-card');
@@ -68,6 +112,7 @@ function hideMatched(){
     console.log('nodes',c)
     c[childSelector].classList.add('hide');
     }
+    updateCounter();
 }
 
 

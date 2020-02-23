@@ -196,3 +196,7 @@ main.game-page {
 .hide {
   visibility: hidden !important;
 }
+
+.hidePage {
+  display: none !important;
+}
