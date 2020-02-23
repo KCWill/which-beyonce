@@ -112,7 +112,17 @@ function hideMatched(){
     console.log('nodes',c)
     c[childSelector].classList.add('hide');
     }
+    addMatchedImage();
     updateCounter();
+}
+
+function addMatchedImage(){
+  for (var i = 0; i < deck1.matchedArray.length; i++){
+  if (deck1.matchedArray[i].isMatched === true){
+    var cm = document.dataset.cm
+    document.getElementById(cm)
+  }
+}
 }
 
 
