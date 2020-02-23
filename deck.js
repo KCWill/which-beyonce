@@ -33,15 +33,20 @@ class Deck {
   };
 
   removeSelected(selectedId) {
-    selectedId--;
-    if (this.selectedCards[0].cardId === selectedId + 1){
-    this.cards[selectedId].toggleSelected();
-    this.selectedCards.shift();
-  } else if (this.selectedCards[1].cardId === selectedId + 1){
-    this.cards[selectedId].toggleSelected();
-    this.selectedCards.pop();
-  }
-    console.log('selectedCards', this.selectedCards);
+    console.log('selectedID bug', selectedId);
+    console.log('before remove bug', this.selectedCards);
+    var cardIndex = this.selectedCards.indexOf(selectedId);
+    this.cards[selectedId-1].toggleSelected();
+    this.selectedCards.splice(cardIndex,1);
+    console.log('remove bug', this.selectedCards);
+  //   if (this.selectedCards[0].cardId === selectedId + 1){
+  //   this.cards[selectedId].toggleSelected();
+  //   this.selectedCards.shift();
+  // } else if (this.selectedCards[1].cardId === selectedId + 1){
+  //   this.cards[selectedId].toggleSelected();
+  //   this.selectedCards.pop();
+  // }
+  //   console.log('selectedCards', this.selectedCards);
   };
 
   checkSelectedCards() {
@@ -60,7 +65,8 @@ class Deck {
   moveToMatched() {
     this.matchedArray.push(this.selectedCards[0]);
     this.matchedArray.push(this.selectedCards[1]);
-
+    this.selectedCards[0].toggleSelected();
+    this.selectedCards[1].toggleSelected();
     //take matched pairs out of array
     //place matched pair into found matches area
   };
