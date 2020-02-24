@@ -52,7 +52,6 @@ function updateCounter(){
 
 function endGame(){
   findElapsedTime();
-  //stall one second
   gamePage.classList.add('hidePage');
   winPage.classList.remove('hidePage');
 }
@@ -109,12 +108,44 @@ function hideMatched(){
     var c = document.querySelector('.game-section').childNodes;
     childSelector = (2*idArray[i])-1;
     // console.log('CS',childSelector);
-    console.log('nodes',c)
+    // console.log('nodes',c)
     c[childSelector].classList.add('hide');
     }
+    addMatchedImage();
     updateCounter();
 }
 
+var matchedCardDisplayArray;
+
+function addMatchedImage(){
+  matchedCardDisplayArray = [];
+  for (var i = 0; i < deck1.matchedArray.length; i = i+ 2){
+  (matchedCardDisplayArray.push(deck1.matchedArray[i].matchedInfo));
+  console.log('matched display', matchedCardDisplayArray)
+  };
+  completedMatches();
+}
+
+function completedMatches() {
+  var completed1 = document.querySelector('#completed-1');
+  var completed2 = document.querySelector('#completed-2');
+  var completed3 = document.querySelector('#completed-3');
+  var completed4 = document.querySelector('#completed-4');
+  var completed5 = document.querySelector('#completed-5');
+
+  completed1.innerHTML = matchedCardDisplayArray[0] || '';
+  completed2.innerHTML = matchedCardDisplayArray[1] || '';
+  completed3.innerHTML = matchedCardDisplayArray[2] || '';
+  completed4.innerHTML = matchedCardDisplayArray[3] || '';
+  completed5.innerHTML = matchedCardDisplayArray[4] || '';
+}
+
+
+
+
+//go through matched array
+//find matchedInfo (every other)
+//insert matchedInfo into empty div
 
 
 //   container.onclick = function pushSelected(event) {
