@@ -164,11 +164,9 @@ function completedMatches(arr) {
 
   for (var i = 0; i < arr.length; i++) {
     var pictureUrl = getPictureUrl(arr[i]);
-    completedMatchesArray[i].style.background = `url("${pictureUrl}")`;
+    completedMatchesArray[i].style= `background-image:url("${pictureUrl}"); background-position: center bottom;background-size: cover;`;
     console.log(completedMatchesArray[i]);
   }
-
-
 
   // completed1.innerHTML = matchedCardDisplayArray[0] || '';
   // completed2.innerHTML = matchedCardDisplayArray[1] || '';
