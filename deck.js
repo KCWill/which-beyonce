@@ -56,6 +56,8 @@ class Deck {
       this.selectedCards[1].match();
       this.moveToMatched();
       this.selectedCards =[];
+    } else {
+      autoFlip();
     }
     console.log('matchedArray', this.matchedArray);
     console.log(this.cards);
