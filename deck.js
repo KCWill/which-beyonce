@@ -5,14 +5,18 @@ class Deck {
     this.selectedCards = [];
     this.matchedArray = [];
   }
-  shuffle() {
-    //Creates a new array each time its ran
-    // var display = document.querySelector('.place-holder-card');
-    // var button = document.querySelector('.play-buttons');
-    // button.addEventListener('click', random);
-    // function random(){
-    // var randomItem =  myArray[Math.floor(Math.random()*myArray.length)];
-    // return display.innerHTML = randomItem
+  shuffle(cardArray) {
+    var i = cardArray.length;
+    var j; //random number
+    var temp; //random index position
+  
+    while(--i > 0){ //i decrements by one until the 0 index
+      j = Math.floor(Math.random() * (i+1)); //generates random number
+      temp = cardArray[j]; //plugs random number into index position in array
+      cardArray[j] = cardArray[i]; //reassigns random index value with current index position in loop
+      cardArray[i] = temp; //reassigns index position's value in loop to random index value
+    }
+    return cardArray 
   };
 
   addSelected(selectedId) {
