@@ -36,6 +36,11 @@ main.game-page {
   height: 70px;
 }
 
+.completed-match.style {
+  background-position: center bottom;
+  background-size: cover;
+}
+
 .matched-cards {
   width: 100%;
 }
@@ -83,7 +88,6 @@ main.game-page {
 
 /* GAME SECTION */
 .back {
-  background-image: url("./kyleimages/cat.png");
   background-position: center bottom;
   background-size: cover;
   transform: rotateY(180deg);

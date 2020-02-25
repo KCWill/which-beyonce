@@ -30,19 +30,47 @@ function startGame() {
   start = Date.now();
   deck1.shuffle(cardArray);
   for (var i=0; i<cardArray.length; i++){
+  var pictureUrl = getPictureUrl(cardArray[i].matchedInfo);
     document.querySelector('.game-section').innerHTML += `
     <div class='card-container'>
       <div class='the-card'>
         <div class='guessing-cards front' data-cardid='${cardArray[i].cardId}' data-matchedInfo='${cardArray[i].matchedInfo}' data-matched='${cardArray[i].matched}'>
           KW
         </div>
-        <div class='guessing-cards back' data-cardid='${cardArray[i].cardId}' data-matchedInfo='${cardArray[i].matchedInfo}' data-matched='${cardArray[i].matched}'>
+        <div class='guessing-cards back' data-cardid='${cardArray[i].cardId}' data-matchedInfo='${cardArray[i].matchedInfo}' data-matched='${cardArray[i].matched}' style='background-image: url("${pictureUrl}");' >
           ${cardArray[i].cardId}
         </div>
       </div>
     </div>`;
   };
 };
+
+function getPictureUrl(num){
+  switch(num){
+    case 1:
+      return "./kyleimages/cat.png";
+      console.log('one');
+      break;
+    case 2:
+      return "./kyleimages/download.jpeg";
+      console.log('two');
+      break;
+    case 3:
+      return "./kyleimages/kitten2.jpg";
+      console.log('three');
+      break;
+    case 4:
+      return "./kyleimages/kitten3.jpg";
+      console.log('four');
+      break;
+    case 5:
+      return "./kyleimages/kitten4.jpeg";
+      console.log('five');
+      break;
+    default:
+      console.log('aint no numbers here yo');
+  }
+}
 
 function updateCounter(){
   matchCountNum.innerHTML = (deck1.matchedArray.length/2);
@@ -151,21 +179,28 @@ function addMatchedImage(){
   (matchedCardDisplayArray.push(deck1.matchedArray[i].matchedInfo));
   console.log('matched display', matchedCardDisplayArray)
   };
-  completedMatches();
+  completedMatches(matchedCardDisplayArray);
 }
 
-function completedMatches() {
+function completedMatches(arr) {
   var completed1 = document.querySelector('#completed-1');
   var completed2 = document.querySelector('#completed-2');
   var completed3 = document.querySelector('#completed-3');
   var completed4 = document.querySelector('#completed-4');
   var completed5 = document.querySelector('#completed-5');
+  var completedMatchesArray = [completed1, completed2, completed3, completed4, completed5];
 
-  completed1.innerHTML = matchedCardDisplayArray[0] || '';
-  completed2.innerHTML = matchedCardDisplayArray[1] || '';
-  completed3.innerHTML = matchedCardDisplayArray[2] || '';
-  completed4.innerHTML = matchedCardDisplayArray[3] || '';
-  completed5.innerHTML = matchedCardDisplayArray[4] || '';
+  for (var i = 0; i < arr.length; i++) {
+    var pictureUrl = getPictureUrl(arr[i]);
+    completedMatchesArray[i].style= `background-image:url("${pictureUrl}"); background-position: center bottom;background-size: cover;`;
+    console.log(completedMatchesArray[i]);
+  }
+
+  // completed1.innerHTML = matchedCardDisplayArray[0] || '';
+  // completed2.innerHTML = matchedCardDisplayArray[1] || '';
+  // completed3.innerHTML = matchedCardDisplayArray[2] || '';
+  // completed4.innerHTML = matchedCardDisplayArray[3] || '';
+  // completed5.innerHTML = matchedCardDisplayArray[4] || '';
 }
 
 
