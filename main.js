@@ -28,6 +28,7 @@ var deck1 = new Deck(cardArray);
 function startGame() {
   // findElapsedTime('start');
   start = Date.now();
+  deck1.shuffle(cardArray);
   for (var i=0; i<cardArray.length; i++){
     document.querySelector('.game-section').innerHTML += `
     <div class='card-container'>
