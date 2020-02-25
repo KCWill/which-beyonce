@@ -83,9 +83,9 @@ container.onclick = function flipCard(event) {
     closest.classList.toggle('flip');
     grabCards();
     hideMatched();
-  } else if (deck1.cards[currentSelected - 1].isSelected === true){
-      deck1.removeSelected(currentSelected);
-      closest.classList.toggle('flip');
+  // } else if (deck1.cards[currentSelected - 1].isSelected === true){
+  //     deck1.removeSelected(currentSelected);
+  //     closest.classList.toggle('flip');
   }
 }
 
@@ -94,9 +94,36 @@ function grabCards(){
   console.log("currentSelected", currentSelected);
   if (deck1.cards[currentSelected - 1].isSelected === false){
     deck1.addSelected(currentSelected);
-  } else if (deck1.cards[currentSelected - 1].isSelected === true){
-    deck1.removeSelected(currentSelected);
+  // } else if (deck1.cards[currentSelected - 1].isSelected === true){
+  //   deck1.removeSelected(currentSelected);
   }
+}
+
+function autoFlip() {
+  console.log('AutoFlip');
+  if (deck1.selectedCards.length == 2) {
+    var flipDelay = window.setTimeout(flipClass, 1000)
+  }
+}
+
+function flipClass() {
+  var selected1 = deck1.selectedCards[0].cardId;
+  var selected2 = deck1.selectedCards[1].cardId;
+  console.log(selected1, selected2);
+  var referenceDiv = document.querySelector('.game-section').childNodes;
+  console.log(referenceDiv);
+  // var selectedLoc1 = deck1.cards[selected1]; //Change later
+  // var selectedLoc2 = deck1.cards.indexOf(selected2);
+
+  // console.log(selectedLoc1, selectedLoc2);
+  var divSelector1 = (2 * selected1) - 1;
+  var divSelector2 = (2 * selected2) - 1;
+  var div1 = referenceDiv[divSelector1].children;
+  div1[0].classList.toggle('flip');
+  var div2 = referenceDiv[divSelector2].children;
+  div2[0].classList.toggle('flip');
+  console.log(referenceDiv);
+  deck1.selectedCards = [];
 }
 
 function hideMatched(){
