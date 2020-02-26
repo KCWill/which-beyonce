@@ -248,7 +248,6 @@ main.game-page {
 
 .win-page {
   align-items: center;
-  background-color: lightblue;
   display: flex;
   height: 90vh;
   justify-content: center;

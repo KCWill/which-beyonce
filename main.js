@@ -16,9 +16,8 @@ var winPage = document.querySelector('.win-page');
 var startGameTime;
 //initialize counter
 matchCountNum.innerHTML = 0;
-var player1Score;
-var player2Score;
-
+var playerScore = [];
+var scores = [];
 
 var card1 = new Card(1, 1);
 var card2 = new Card(2, 1);
@@ -56,8 +55,7 @@ function startGame() {
         <div class='guessing-cards front' data-cardid='${cardArray[i].cardId}' data-matchedInfo='${cardArray[i].matchedInfo}' data-matched='${cardArray[i].matched}' data-location='${i}'>
           KW
         </div>
-        <div class='guessing-cards back' data-cardid='${cardArray[i].cardId}' data-matchedInfo='${cardArray[i].matchedInfo}' data-matched='${cardArray[i].matched}' data-location='${i}' style='background-image: url("${pictureUrl}");' >
-          ${cardArray[i].cardId}
+        <div class='guessing-cards back' data-cardid='${cardArray[i].cardId}' data-matchedInfo='${cardArray[i].matchedInfo}' data-matched='${cardArray[i].matched}' data-location='${i}' style='background-image: url("${pictureUrl}");'>
         </div>
       </div>
     </div>`;
@@ -73,13 +71,13 @@ function getPictureUrl(num) {
       return "./kyleimages/kylewii2.png";
       break;
     case 3:
-      return "./kyleimages/kitten2.jpg";
+      return "./kyleimages/kylewoo1.png";
       break;
     case 4:
-      return "./kyleimages/kitten3.jpg";
+      return "./kyleimages/kylewoo2.png";
       break;
     case 5:
-      return "./kyleimages/kitten4.jpeg";
+      return "./kyleimages/waitthatsamegan.jpg";
       break;
     default:
       console.log('aint no numbers here yo');
@@ -96,25 +94,76 @@ function updateCounter() {
 };
 
 function endGame() {
+  playerScore.push(findElapsedTime());
+  console.log("p1s", playerScore);
   if (!player2.value){
-  player1Score = findElapsedTime();
   gamePage.classList.add('hide-page');
   winPage.classList.remove('hide-page');
-} else {
-  player1Score = findElapsedTime();
-
-  console.log("p1s", player1Score);
+  timerDisplay.innerHTML = formatTime(findElapsedTime());
+  topTimes(findElapsedTime());
+} else if (playerScore.length === 1){
   replay();
-  player2Score = findElapsedTime();
-  console.log('p2s', player2Score);
+} else if (playerScore.length === 2) {
+  console.log('endTwoPlayer')
   twoPlayerWinPage();
 }
 }
 
-function twoPlayerWinPage(){
-  formatTime(player1Score);
-  formatTime(player2Score);
+function topTimes(score){
+  scores.push(score);
+  console.log('scoresArray', scores);
+  scores.sort(function(a,b){return a-b});
+  var firstScore = formatTime(scores[0]);
+  var secondScore = formatTime(scores[1]);
+  var thirdScore = formatTime(scores[2]);
+  if (scores.length === 1){
+  document.getElementById('first').innerHTML = firstScore;
+} else if (scores.length === 2){
+  document.getElementById('first').innerHTML = firstScore;
+  document.getElementById('second').innerHTML = secondScore;
+} else if (scores.length === 3){
+  document.getElementById('first').innerHTML = firstScore;
+  document.getElementById('second').innerHTML = secondScore;
+  document.getElementById('third').innerHTML = thirdScore;
+} else if (scores.length > 3){
+  document.getElementById('first').innerHTML = firstScore;
+  document.getElementById('second').innerHTML = secondScore;
+  document.getElementById('third').innerHTML = thirdScore;
+  scores.pop();
+}
 
+}
+
+function returnToStart() {
+  if (playerOneName.value && playerTwoName.value){
+    newGame();
+    document.querySelector('.game-section').innerHTML = ``;
+    matchCountNum.innerHTML = 0;
+    clearMatchedIcons(matchedCardDisplayArray);
+    deck1.matchedArray = [];
+    gamePage.classList.add('hide-page');
+    winPage.classList.add('hide-page');
+    playerInfoPage.classList.remove('hide-page');
+    return
+  }
+  document.querySelector('.game-section').innerHTML = ``;
+  matchCountNum.innerHTML = 0;
+  clearMatchedIcons(matchedCardDisplayArray);
+  deck1.matchedArray = [];
+  gamePage.classList.add('hide-page');
+  winPage.classList.add('hide-page');
+  playerInfoPage.classList.remove('hide-page');
+}
+
+function twoPlayerWinPage(){
+  winPage.classList.remove('hide-page');
+  gamePage.classList.add('hide-page');
+  if (playerScore[0] < playerScore[1]){
+    timerDisplay.innerHTML = formatTime(playerScore[0]);
+  } else {
+    timerDisplay.innerHTML = formatTime(playerScore[1]);
+  };
+  playerScore = [];
 }
 function replay(){
     document.querySelector('.game-section').innerHTML = ``;
@@ -136,10 +185,9 @@ function formatTime(elapsedTime){
   var minutes = Math.floor((elapsedTime / 1000) / 60);
   var seconds = (elapsedTime / 1000) % 60;
   if (seconds < 10) {
-    timerDisplay.innerHTML = `${minutes}:0${seconds.toFixed(2)}`;
+    return `${minutes}:0${seconds.toFixed(2)}`;
   } else {
-    var formatTime =
-      timerDisplay.innerHTML = `${minutes}:${seconds.toFixed(2)}`;
+    return `${minutes}:${seconds.toFixed(2)}`;
   };
 }
 

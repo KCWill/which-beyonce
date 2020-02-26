@@ -47,9 +47,9 @@
       </section>
       <section class='scoreboard'>
         <p>Top 3 Times</p>
-        <p>3335</p>
-        <p>543</p>
-        <p>5654</p>
+        <p id='first'>0</p>
+        <p id='second'>0</p>
+        <p id='third'>0</p>
       </section>
     </aside>
     <section id='container' class='game-section'>
@@ -62,11 +62,11 @@
       </section>
       <section class='win-stats'>
         <p>All 5 matches were found in</p>
-        <p id="total-time">198.52 seconds</p>
+        <p id="total-time"></p>
       </section>
       <section class='play-buttons'>
-        <button class='game-buttons' onclick='replay()'>Play Again</button>
-        <button class='game-buttons'>New Game</button>
+        <button class='game-buttons' onclick='returnToStart()'>Play Again</button>
+        <button class='game-buttons' onclick='returnToStart()'>New Game</button>
       </section>
     </section>
   </main>
