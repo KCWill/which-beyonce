@@ -10,9 +10,26 @@
   <header>
     <h1>Which Kyle W?<h1>
   </header>
-  <main class='game-page'>
+  <main class='player-info-page'>
+    <section class='player-inputs'>
+      <div class='player-one-and-two'>
+        <div class='player-one'>
+          <h2>Players One's Name</h2>
+          <input type="text" id='player1' name="" value="">
+        </div>
+         <div class='player-two'>
+          <h2>Players Two's Name</h2>
+          <input type="text" id='player2' name="" value="">
+        </div>
+      </div>
+      <div class='begin-game-btn'>
+        <button class='begin-btn' onclick=newGame()>BEGIN GAME</button>
+      </div>
+    </section>
+  </main>
+  <main class='game-page hide-page'>
     <aside class='side-panel'>
-      <input type='button' onclick=startGame() value='CLICK HERE'>
+      <!-- <input type='button' onclick=startGame() value='CLICK HERE'> -->
       <section class='match-counter'>
         <h2>Matches this round</h2>
         <p class='match-counter-number'></p>
@@ -38,7 +55,7 @@
     <section id='container' class='game-section'>
     </section>
   </main>
-  <main class='win-page hidePage'>
+  <main class='win-page hide-page'>
     <section>
       <section class='win-banner'>
         <h2>Congratulations!</h2>
@@ -48,7 +65,7 @@
         <p id="total-time">198.52 seconds</p>
       </section>
       <section class='play-buttons'>
-        <button class='game-buttons'>Play Again</button>
+        <button class='game-buttons' onclick='replay()'>Play Again</button>
         <button class='game-buttons'>New Game</button>
       </section>
     </section>
