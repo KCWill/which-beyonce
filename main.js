@@ -1,11 +1,10 @@
 var gameSection = document.querySelector('.game-section');
 var container = document.getElementById('container');
-var allCards = document.querySelectorAll(`[data-cardid~=""]`);
 var matchCountNum = document.querySelector('.match-counter-number');
 var timerDisplay = document.querySelector('#total-time')
 var gamePage = document.querySelector('.game-page');
 var winPage = document.querySelector('.win-page');
-var start;
+var startGameTime;
 //initialize counter
 matchCountNum.innerHTML = 0;
 
@@ -26,18 +25,17 @@ var cardArray = [
 var deck1 = new Deck(cardArray);
 
 function startGame() {
-  // findElapsedTime('start');
-  start = Date.now();
-  deck1.shuffle(cardArray);
-  for (var i=0; i<cardArray.length; i++){
-  var pictureUrl = getPictureUrl(cardArray[i].matchedInfo);
+  startGameTime = Date.now();
+  cardArray = deck1.shuffle(cardArray);
+  for (var i = 0; i < cardArray.length; i++) {
+    var pictureUrl = getPictureUrl(cardArray[i].matchedInfo);
     document.querySelector('.game-section').innerHTML += `
     <div class='card-container'>
       <div class='the-card'>
-        <div class='guessing-cards front' data-cardid='${cardArray[i].cardId}' data-matchedInfo='${cardArray[i].matchedInfo}' data-matched='${cardArray[i].matched}'>
+        <div class='guessing-cards front' data-cardid='${cardArray[i].cardId}' data-matchedInfo='${cardArray[i].matchedInfo}' data-matched='${cardArray[i].matched}' data-location='${i}'>
           KW
         </div>
-        <div class='guessing-cards back' data-cardid='${cardArray[i].cardId}' data-matchedInfo='${cardArray[i].matchedInfo}' data-matched='${cardArray[i].matched}' style='background-image: url("${pictureUrl}");' >
+        <div class='guessing-cards back' data-cardid='${cardArray[i].cardId}' data-matchedInfo='${cardArray[i].matchedInfo}' data-matched='${cardArray[i].matched}' data-location='${i}' style='background-image: url("${pictureUrl}");' >
           ${cardArray[i].cardId}
         </div>
       </div>
@@ -45,8 +43,8 @@ function startGame() {
   };
 };
 
-function getPictureUrl(num){
-  switch(num){
+function getPictureUrl(num) {
+  switch (num) {
     case 1:
       return "./kyleimages/cat.png";
       console.log('one');
@@ -72,60 +70,54 @@ function getPictureUrl(num){
   }
 }
 
-function updateCounter(){
-  matchCountNum.innerHTML = (deck1.matchedArray.length/2);
-  if (deck1.matchedArray.length === 10){
-    setTimeout(function() {endGame()},1500);
+function updateCounter() {
+  matchCountNum.innerHTML = (deck1.matchedArray.length / 2);
+  if (deck1.matchedArray.length === 10) {
+    setTimeout(function() {
+      endGame()
+    }, 1500);
   };
 };
 
-function endGame(){
+function endGame() {
   findElapsedTime();
   gamePage.classList.add('hidePage');
   winPage.classList.remove('hidePage');
 }
 
-function findElapsedTime(){
-  var elapsedTime = Date.now()-start;
-  var minutes = Math.floor((elapsedTime/1000)/60);
-  var seconds = (elapsedTime/1000)%60;
-  if (seconds < 10){
+function findElapsedTime() {
+  var elapsedTime = Date.now() - startGameTime;
+  var minutes = Math.floor((elapsedTime / 1000) / 60);
+  var seconds = (elapsedTime / 1000) % 60;
+  if (seconds < 10) {
     timerDisplay.innerHTML = `${minutes}:0${seconds.toFixed(2)}`;
   } else {
-  var formatTime =
-  timerDisplay.innerHTML = `${minutes}:${seconds.toFixed(2)}`;
-};
+    var formatTime =
+      timerDisplay.innerHTML = `${minutes}:${seconds.toFixed(2)}`;
+  };
 }
-// function findElapsedTime(startStop){
-//   if (startStop === 'start'){
-//     start = Date.now();
-//   } else if (startStop === 'end'){
-//     var elapsedTime = Date.now() - start;
-//     timerDisplay.innerHTML = elapsedTime;
-//   };
-// };
 
 container.onclick = function flipCard(event) {
   var closest = event.target.closest('.the-card');
-  var currentSelected = event.target.dataset.cardid;
+  var currentSelected = event.target.dataset.location;
   if (deck1.selectedCards.length < 2) {
     closest.classList.toggle('flip');
     grabCards();
     hideMatched();
-  // } else if (deck1.cards[currentSelected - 1].isSelected === true){
-  //     deck1.removeSelected(currentSelected);
-  //     closest.classList.toggle('flip');
   }
 }
 
-function grabCards(){
-  var currentSelected = event.target.dataset.cardid;
+function grabCards() {
+  var currentSelected = event.target.dataset.location;
   console.log("currentSelected", currentSelected);
-  if (deck1.cards[currentSelected - 1].isSelected === false){
+  if (deck1.selectedCards.length < 2) {
     deck1.addSelected(currentSelected);
-  // } else if (deck1.cards[currentSelected - 1].isSelected === true){
-  //   deck1.removeSelected(currentSelected);
   }
+  if (deck1.selectedCards.length === 2) {
+    deck1.checkSelectedCards();
+  };
+  autoFlip();
+
 }
 
 function autoFlip() {
@@ -136,48 +128,81 @@ function autoFlip() {
 }
 
 function flipClass() {
-  var selected1 = deck1.selectedCards[0].cardId;
-  var selected2 = deck1.selectedCards[1].cardId;
-  console.log(selected1, selected2);
+  var selected1 = findLocation(0);
+  var selected2 = findLocation(1);
   var referenceDiv = document.querySelector('.game-section').childNodes;
-  console.log(referenceDiv);
-  // var selectedLoc1 = deck1.cards[selected1]; //Change later
-  // var selectedLoc2 = deck1.cards.indexOf(selected2);
-
-  // console.log(selectedLoc1, selectedLoc2);
-  var divSelector1 = (2 * selected1) - 1;
-  var divSelector2 = (2 * selected2) - 1;
+  var divSelector1 = (2 * selected1) + 1;
+  var divSelector2 = (2 * selected2) + 1;
   var div1 = referenceDiv[divSelector1].children;
   div1[0].classList.toggle('flip');
   var div2 = referenceDiv[divSelector2].children;
   div2[0].classList.toggle('flip');
-  console.log(referenceDiv);
   deck1.selectedCards = [];
 }
 
-function hideMatched(){
-  var idArray =[];
-  for (var i = 0; i < deck1.matchedArray.length; i++){
-    // console.log('match', deck1.matchedArray);
-    idArray.push(deck1.matchedArray[i].cardId);
-    // console.log('ids', idArray);
-    var c = document.querySelector('.game-section').childNodes;
-    childSelector = (2*idArray[i])-1;
-    // console.log('CS',childSelector);
-    // console.log('nodes',c)
-    c[childSelector].classList.add('hide');
-    }
-    addMatchedImage();
-    updateCounter();
+function findSelectedLocation(idNum) {
+  for (var i = 0; i < 10; i++) {
+    if (idNum === deck1.cards[i].cardId) {
+      var location = i;
+    };
+  };
+  return location
 }
+
+function findLocation(sCIndex) {
+  var selected = deck1.selectedCards[sCIndex].cardId;
+  var selectedLoc = findSelectedLocation(selected);
+  return selectedLoc;
+}
+
+function hideMatched() {
+  //Search inside cardArray for locations of id's inside of matched array
+  var matchedCounter = deck1.matchedArray.length;
+  if (matchedCounter < 2){
+    return
+  }
+  console.log('matchedArray length', matchedCounter);
+  var match1 = deck1.matchedArray[matchedCounter - 2].cardId;
+  var match2 = deck1.matchedArray[matchedCounter - 1].cardId;
+  var matchedLoc1 = findMatchedLocation(match1);
+  var matchedLoc2 = findMatchedLocation(match2);
+  console.log('matches', matchedLoc1, matchedLoc2);
+  var c = document.querySelector('.game-section').childNodes;
+  childSelector1 = (2 * matchedLoc1)+1;
+  childSelector2 = (2 * matchedLoc2)+1;
+  // console.log('CS',childSelector);
+  // console.log('nodes',c)
+  c[childSelector1].classList.add('hide');
+  c[childSelector2].classList.add('hide');
+
+  addMatchedImage();
+  updateCounter();
+
+
+};
+
+
+//     idArray.push(deck1.matchedArray[i].cardId);
+//     // console.log('ids', idArray);
+
+
+function findMatchedLocation(match) {
+  for (var i = 0; i < 10; i++) {
+    if (deck1.cards[i].cardId === match) {
+      var matchedLoc = i;
+      return matchedLoc;
+    };
+  };
+};
+
 
 var matchedCardDisplayArray;
 
-function addMatchedImage(){
+function addMatchedImage() {
   matchedCardDisplayArray = [];
-  for (var i = 0; i < deck1.matchedArray.length; i = i+ 2){
-  (matchedCardDisplayArray.push(deck1.matchedArray[i].matchedInfo));
-  console.log('matched display', matchedCardDisplayArray)
+  for (var i = 0; i < deck1.matchedArray.length; i = i + 2) {
+    (matchedCardDisplayArray.push(deck1.matchedArray[i].matchedInfo));
+    console.log('matched display', matchedCardDisplayArray)
   };
   completedMatches(matchedCardDisplayArray);
 }
@@ -192,7 +217,7 @@ function completedMatches(arr) {
 
   for (var i = 0; i < arr.length; i++) {
     var pictureUrl = getPictureUrl(arr[i]);
-    completedMatchesArray[i].style= `background-image:url("${pictureUrl}"); background-position: center bottom;background-size: cover;`;
+    completedMatchesArray[i].style = `background-image:url("${pictureUrl}"); background-position: center bottom;background-size: cover;`;
     console.log(completedMatchesArray[i]);
   }
 
