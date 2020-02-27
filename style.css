@@ -16,16 +16,15 @@ header {
 }
 
 /* MAIN PAGE 1 */
-
 .player-info-page {
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   background-color: grey;
   height: 90vh;
 }
 
-.player-one-and-two{
+.player-one-and-two {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,10 +38,16 @@ header {
   margin-bottom: 100px;
 }
 
+.input-box {
+  font-size: 22px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
 .player-one,
-.player-two{
+.player-two {
   color: white;
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -50,7 +55,6 @@ header {
   width: 50%;
   text-transform: uppercase;
 }
-
 
 .begin-game-btn {
   display: flex;
@@ -74,16 +78,15 @@ input {
 }
 
 /* MAIN PAGE 2 */
-
 main.game-page {
   display: flex;
   flex-direction: row;
   height: 90vh;
 }
-/* ASIDE */
 
+/* ASIDE */
 .bottom-two-match {
-  display:flex;
+  display: flex;
   justify-content: center;
 }
 
@@ -113,13 +116,13 @@ main.game-page {
   font-size: 100px;
   font-weight: bold;
   margin: 0;
-  }
+}
 
 .scoreboard {
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin: 200px 0 0 0;
+  margin: 50px 0 0 0;
   ;
 }
 
@@ -163,7 +166,6 @@ main.game-page {
   width: 200px;
 }
 
-
 .front,
 .back {
   backface-visibility: hidden;
@@ -187,7 +189,7 @@ main.game-page {
 .guessing-cards {
   background-color: white;
   border: 5px solid black;
-  box-shadow: 7px 4px 15px 0px rgba(0,0,0,0.42);
+  box-shadow: 7px 4px 15px 0px rgba(0, 0, 0, 0.42);
   color: black;
   font-size: 100px;
   font-weight: bold;
@@ -199,8 +201,9 @@ main.game-page {
   position: absolute;
   top: 5vh;
   left: 5vw;
-  transform: rotate(28deg) ;
+  transform: rotate(28deg);
 }
+
 #position2 {
   display: inline;
   position: absolute;
@@ -208,6 +211,7 @@ main.game-page {
   left: 18vw;
   transform: rotate(-16deg)
 }
+
 #position3 {
   display: inline;
   position: absolute;
@@ -215,6 +219,7 @@ main.game-page {
   left: 36vw;
   transform: rotate(12deg)
 }
+
 #position4 {
   display: inline;
   position: absolute;
@@ -222,6 +227,7 @@ main.game-page {
   left: 49vw;
   transform: rotate(-34deg)
 }
+
 #position5 {
   display: inline;
   position: absolute;
@@ -229,6 +235,7 @@ main.game-page {
   left: 63vw;
   transform: rotate(18deg)
 }
+
 #position6 {
   display: inline;
   position: absolute;
@@ -236,6 +243,7 @@ main.game-page {
   left: 5vw;
   transform: rotate(18deg)
 }
+
 #position7 {
   display: inline;
   position: absolute;
@@ -243,6 +251,7 @@ main.game-page {
   left: 22vw;
   transform: rotate(-6deg)
 }
+
 #position8 {
   display: inline;
   position: absolute;
@@ -250,6 +259,7 @@ main.game-page {
   left: 39vw;
   transform: rotate(5deg)
 }
+
 #position9 {
   display: inline;
   position: absolute;
@@ -257,6 +267,7 @@ main.game-page {
   left: 54vw;
   transform: rotate(-24deg)
 }
+
 #position0 {
   display: inline;
   position: absolute;
@@ -302,14 +313,14 @@ main.game-page {
   padding: 15px;
 }
 
-.win-banner h2{
+.win-banner h2 {
   color: white;
   font-size: 100px;
   margin: 0px 0px 60px;
 }
 
-.win-message-stats{
-  position:relative;
+.win-message-stats {
+  position: relative;
   top: 170px;
 }
 
@@ -318,7 +329,7 @@ main.game-page {
   background-image: url('kyleimages/grouppic.jpg');
   background-position: center;
   background-size: cover;
-  color:white;
+  color: white;
   display: flex;
   height: 90vh;
   justify-content: center;
@@ -326,14 +337,13 @@ main.game-page {
   text-shadow: 4px 4px black;
 }
 
-.win-stats p{
+.win-stats p {
   font-size: 40px;
   margin: 0px;
   text-align: center;
 }
 
 /* EFFECT CLASSES */
-
 .hide {
   visibility: hidden !important;
 }

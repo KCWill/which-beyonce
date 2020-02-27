@@ -4,8 +4,8 @@ class Card {
     this.matchedInfo = matchedInfo;
     this.matched = false;
     this.isSelected = false;
-  }
+  };
   match() {
     this.matched = true;
-  }
-}
+  };
+};

@@ -4,14 +4,13 @@ class Deck {
     this.matchedCards = cardArray.matchedInfo;
     this.selectedCards = [];
     this.matchedArray = [];
-  }
+  };
   shuffle(cardArray) {
     var i = cardArray.length;
     var j; //random number
     var temp; //random index position
-
-    while(--i > 0){
-      j = Math.floor(Math.random() * (i+1));
+    while (--i > 0) {
+      j = Math.floor(Math.random() * (i + 1));
       temp = cardArray[j];
       cardArray[j] = cardArray[i];
       cardArray[i] = temp;
@@ -23,7 +22,6 @@ class Deck {
     this.cards[cardLoc].isSelected = true;
     this.selectedCards.push(this.cards[cardLoc]);
   };
-
 
   checkSelectedCards() {
     if (this.selectedCards[0].matchedInfo === this.selectedCards[1].matchedInfo) {
