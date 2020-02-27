@@ -16,21 +16,16 @@ header {
 }
 
 /* MAIN PAGE 1 */
-h2 {
-
-}
 
 .player-info-page {
-  /* border: solid 2px red; */
   display:flex;
   justify-content: center;
   align-items: center;
   background-color: grey;
-  height: 100vh;
+  height: 90vh;
 }
 
 .player-one-and-two{
-  /* border: solid 2px red; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,7 +33,6 @@ h2 {
 }
 
 .player-inputs {
-  /* border: solid 2px red; */
   background-color: black;
   padding: 30px;
   width: 90%;
@@ -47,7 +41,6 @@ h2 {
 
 .player-one,
 .player-two{
-  /* border: solid 2px red; */
   color: white;
   display:flex;
   justify-content: center;
@@ -60,7 +53,6 @@ h2 {
 
 
 .begin-game-btn {
-  /* border: solid 2px red; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -171,6 +163,7 @@ main.game-page {
   width: 200px;
 }
 
+
 .front,
 .back {
   backface-visibility: hidden;
@@ -185,10 +178,7 @@ main.game-page {
 }
 
 .game-section {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  position: relative;
   background-color: #CBD0D6;
   width: 80%;
   height: 90vh;
@@ -202,6 +192,77 @@ main.game-page {
   font-size: 100px;
   font-weight: bold;
   text-align: center;
+}
+
+#position1 {
+  display: inline-block;
+  position: absolute;
+  top: 5vh;
+  left: 5vw;
+  transform: rotate(28deg) ;
+}
+#position2 {
+  display: inline;
+  position: absolute;
+  top: 7vh;
+  left: 18vw;
+  transform: rotate(-16deg)
+}
+#position3 {
+  display: inline;
+  position: absolute;
+  top: 4vh;
+  left: 36vw;
+  transform: rotate(12deg)
+}
+#position4 {
+  display: inline;
+  position: absolute;
+  top: 5vh;
+  left: 49vw;
+  transform: rotate(-34deg)
+}
+#position5 {
+  display: inline;
+  position: absolute;
+  top: 8vh;
+  left: 63vw;
+  transform: rotate(18deg)
+}
+#position6 {
+  display: inline;
+  position: absolute;
+  top: 40vh;
+  left: 5vw;
+  transform: rotate(18deg)
+}
+#position7 {
+  display: inline;
+  position: absolute;
+  top: 36vh;
+  left: 22vw;
+  transform: rotate(-6deg)
+}
+#position8 {
+  display: inline;
+  position: absolute;
+  top: 44vh;
+  left: 39vw;
+  transform: rotate(5deg)
+}
+#position9 {
+  display: inline;
+  position: absolute;
+  top: 38vh;
+  left: 54vw;
+  transform: rotate(-24deg)
+}
+#position10 {
+  display: inline;
+  position: absolute;
+  top: 40vh;
+  left: 68vw;
+  transform: rotate(28deg)
 }
 
 .the-card {
@@ -242,16 +303,22 @@ main.game-page {
 }
 
 .win-banner h2{
+  color: white;
   font-size: 100px;
   margin: 0px 0px 60px;
 }
 
 .win-page {
   align-items: center;
+  background-image: url('kyleimages/grouppic.jpg');
+  background-position: center bottom;
+  background-size: cover;
+  color:white;
   display: flex;
   height: 90vh;
   justify-content: center;
   margin: 0;
+  text-shadow: 4px 4px black;
 }
 
 .win-stats p{
