@@ -20,6 +20,7 @@ class Deck {
   };
 
   addSelected(cardLoc) {
+    this.cards[cardLoc].isSelected = true;
     this.selectedCards.push(this.cards[cardLoc]);
   };
 

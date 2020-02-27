@@ -61,18 +61,13 @@ function newGame() {
   gamePage.classList.remove('hide-page');
 }
 
-function displayLocalStorage() {
-
-}
-
-
 function startGame() {
   startGameTime = Date.now();
   cardArray = deck1.shuffle(cardArray);
   for (var i = 0; i < cardArray.length; i++) {
     var pictureUrl = getPictureUrl(cardArray[i].matchedInfo);
     document.querySelector('.game-section').innerHTML += `
-    <div class='card-container'>
+    <div class='card-container' id='position${i}'>
       <div class='the-card'>
         <div class='guessing-cards front' data-cardid='${cardArray[i].cardId}' data-matchedInfo='${cardArray[i].matchedInfo}' data-matched='${cardArray[i].matched}' data-location='${i}'>
           KW
@@ -236,12 +231,15 @@ function formatTime(elapsedTime) {
 container.onclick = function flipCard(event) {
   var closest = event.target.closest('.the-card');
   var currentSelected = event.target.dataset.location;
-  if (deck1.selectedCards.length < 2) {
+  if (deck1.selectedCards.length === 1 &&   deck1.cards[currentSelected].isSelected === true){
+    return
+  } else if(deck1.selectedCards.length < 2){
     closest.classList.toggle('flip');
     grabCards();
     hideMatched();
+    }
   }
-}
+
 
 function grabCards() {
   var currentSelected = event.target.dataset.location;
@@ -252,7 +250,6 @@ function grabCards() {
     deck1.checkSelectedCards();
   };
   autoFlip();
-
 }
 
 function autoFlip() {
@@ -262,6 +259,8 @@ function autoFlip() {
 }
 
 function flipClass() {
+  deck1.selectedCards[0].isSelected = false;
+  deck1.selectedCards[1].isSelected = false;
   var selected1 = findLocation(0);
   var selected2 = findLocation(1);
   var referenceDiv = document.querySelector('.game-section').childNodes;
@@ -290,7 +289,7 @@ function findLocation(sCIndex) {
 }
 
 function hideMatched() {
-  //Search inside cardArray for locations of id's inside of matched array
+  console.log('hieee')
   var matchedCounter = deck1.matchedArray.length;
   if (matchedCounter < 2) {
     return
