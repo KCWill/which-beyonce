@@ -257,7 +257,7 @@ main.game-page {
   left: 54vw;
   transform: rotate(-24deg)
 }
-#position10 {
+#position0 {
   display: inline;
   position: absolute;
   top: 40vh;
@@ -308,10 +308,15 @@ main.game-page {
   margin: 0px 0px 60px;
 }
 
+.win-message-stats{
+  position:relative;
+  top: 170px;
+}
+
 .win-page {
   align-items: center;
   background-image: url('kyleimages/grouppic.jpg');
-  background-position: center bottom;
+  background-position: center;
   background-size: cover;
   color:white;
   display: flex;
