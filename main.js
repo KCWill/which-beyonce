@@ -9,6 +9,7 @@ var playerOneName = document.getElementById('player1');
 var playerTwoName = document.getElementById('player2');
 var container = document.getElementById('container');
 var matchCountNum = document.querySelector('.match-counter-number');
+var matchedCardDisplayArray;
 var timerDisplay = document.querySelector('#total-time')
 var playerInfoPage = document.querySelector('.player-info-page');
 var gamePage = document.querySelector('.game-page');
@@ -36,30 +37,27 @@ var deck1 = new Deck(cardArray);
 
 window.onload = retrieve;
 
-
-
 function store(data) {
   var storeDataString = JSON.stringify(data);
   var storedString = localStorage.setItem('topScores', storeDataString);
-}
+};
 
 function retrieve() {
   var retrieveString = localStorage.getItem('topScores');
   scores = JSON.parse(retrieveString);
-  console.log('retrieve working?', scores);
   displayTopTimes();
   return scores
-}
+};
 
 function newGame() {
   if (!player1.value) {
     alert('Must have at least Player One input');
     return
-  }
+  };
   startGame();
   playerInfoPage.classList.add('hide-page');
   gamePage.classList.remove('hide-page');
-}
+};
 
 function startGame() {
   startGameTime = Date.now();
@@ -98,8 +96,8 @@ function getPictureUrl(num) {
       break;
     default:
       console.log('aint no numbers here yo');
-  }
-}
+  };
+};
 
 function updateCounter() {
   matchCountNum.innerHTML = (deck1.matchedArray.length / 2);
@@ -112,7 +110,6 @@ function updateCounter() {
 
 function endGame() {
   playerScore.push(findElapsedTime());
-  console.log("p1s", playerScore);
   if (!player2.value) {
     gamePage.classList.add('hide-page');
     winPage.classList.remove('hide-page');
@@ -121,10 +118,9 @@ function endGame() {
   } else if (playerScore.length === 1) {
     replay();
   } else if (playerScore.length === 2) {
-    console.log('endTwoPlayer')
     twoPlayerWinPage();
-  }
-}
+  };
+};
 
 function topTimes(score) {
   if (scores === null) {
@@ -135,13 +131,12 @@ function topTimes(score) {
     return a - b
   });
   displayTopTimes();
-}
+};
 
 function displayTopTimes() {
   if (scores === null) {
     scores = [];
   };
-  console.log('scores on load', scores);
   var firstScore = formatTime(scores[0]);
   var secondScore = formatTime(scores[1]);
   var thirdScore = formatTime(scores[2]);
@@ -165,10 +160,8 @@ function displayTopTimes() {
     store(scores);
   } else {
     scores = [];
-  }
-}
-
-
+  };
+};
 
 function returnToStart() {
   if (playerOneName.value && playerTwoName.value) {
@@ -181,7 +174,7 @@ function returnToStart() {
     winPage.classList.add('hide-page');
     playerInfoPage.classList.remove('hide-page');
     return
-  }
+  };
   document.querySelector('.game-section').innerHTML = ``;
   matchCountNum.innerHTML = 0;
   clearMatchedIcons(matchedCardDisplayArray);
@@ -189,7 +182,7 @@ function returnToStart() {
   gamePage.classList.add('hide-page');
   winPage.classList.add('hide-page');
   playerInfoPage.classList.remove('hide-page');
-}
+};
 
 function twoPlayerWinPage() {
   winPage.classList.remove('hide-page');
@@ -200,7 +193,7 @@ function twoPlayerWinPage() {
     timerDisplay.innerHTML = formatTime(playerScore[1]);
   };
   playerScore = [];
-}
+};
 
 function replay() {
   document.querySelector('.game-section').innerHTML = ``;
@@ -211,12 +204,12 @@ function replay() {
   playerInfoPage.classList.add('hide-page');
   winPage.classList.add('hide-page');
   gamePage.classList.remove('hide-page');
-}
+};
 
 function findElapsedTime() {
   var elapsedTime = Date.now() - startGameTime;
   return elapsedTime;
-}
+};
 
 function formatTime(elapsedTime) {
   var minutes = Math.floor((elapsedTime / 1000) / 60);
@@ -226,37 +219,36 @@ function formatTime(elapsedTime) {
   } else {
     return `${minutes}:${seconds.toFixed(2)}`;
   };
-}
+};
 
 container.onclick = function flipCard(event) {
   var closest = event.target.closest('.the-card');
   var currentSelected = event.target.dataset.location;
-  if (deck1.selectedCards.length === 1 &&   deck1.cards[currentSelected].isSelected === true){
+  if (deck1.selectedCards.length === 1 && deck1.cards[currentSelected].isSelected === true) {
     return
-  } else if(deck1.selectedCards.length < 2){
+  } else if (deck1.selectedCards.length < 2) {
     closest.classList.toggle('flip');
     grabCards();
     hideMatched();
-    }
-  }
-
+  };
+};
 
 function grabCards() {
   var currentSelected = event.target.dataset.location;
   if (deck1.selectedCards.length < 2) {
     deck1.addSelected(currentSelected);
-  }
+  };
   if (deck1.selectedCards.length === 2) {
     deck1.checkSelectedCards();
   };
   autoFlip();
-}
+};
 
 function autoFlip() {
   if (deck1.selectedCards.length == 2) {
     var flipDelay = window.setTimeout(flipClass, 1000)
-  }
-}
+  };
+};
 
 function flipClass() {
   deck1.selectedCards[0].isSelected = false;
@@ -271,7 +263,7 @@ function flipClass() {
   var div2 = referenceDiv[divSelector2].children;
   div2[0].classList.toggle('flip');
   deck1.selectedCards = [];
-}
+};
 
 function findSelectedLocation(idNum) {
   for (var i = 0; i < 10; i++) {
@@ -279,21 +271,20 @@ function findSelectedLocation(idNum) {
       var location = i;
     };
   };
-  return location
-}
+  return location;
+};
 
 function findLocation(sCIndex) {
   var selected = deck1.selectedCards[sCIndex].cardId;
   var selectedLoc = findSelectedLocation(selected);
   return selectedLoc;
-}
+};
 
 function hideMatched() {
-  console.log('hieee')
   var matchedCounter = deck1.matchedArray.length;
   if (matchedCounter < 2) {
     return
-  }
+  };
   var match1 = deck1.matchedArray[matchedCounter - 2].cardId;
   var match2 = deck1.matchedArray[matchedCounter - 1].cardId;
   var matchedLoc1 = findMatchedLocation(match1);
@@ -303,11 +294,8 @@ function hideMatched() {
   childSelector2 = (2 * matchedLoc2) + 1;
   c[childSelector1].classList.add('hide');
   c[childSelector2].classList.add('hide');
-
   addMatchedImage();
   updateCounter();
-
-
 };
 
 function findMatchedLocation(match) {
@@ -319,40 +307,24 @@ function findMatchedLocation(match) {
   };
 };
 
-var matchedCardDisplayArray;
-
 function addMatchedImage() {
   matchedCardDisplayArray = [];
   for (var i = 0; i < deck1.matchedArray.length; i = i + 2) {
     (matchedCardDisplayArray.push(deck1.matchedArray[i].matchedInfo));
   };
   completedMatches(matchedCardDisplayArray);
-}
+};
 
 function completedMatches(arr) {
   for (var i = 0; i < arr.length; i++) {
     var pictureUrl = getPictureUrl(arr[i]);
     completedMatchesArray[i].style = `background-image:url("${pictureUrl}"); background-position: center bottom;background-size: cover;`;
-  }
-}
+  };
+};
 
 function clearMatchedIcons(arr) {
   for (var i = 0; i < arr.length; i++) {
     var pictureUrl = getPictureUrl(arr[i]);
     completedMatchesArray[i].style = ``;
-  }
-}
-
-
-
-
-//go through matched array
-//find matchedInfo (every other)
-//insert matchedInfo into empty div
-
-
-//   container.onclick = function pushSelected(event) {
-//     var selected = event.target.closest('.data-cardid');
-//     var selectedId = selected.id
-//     selectedCards.push(selectedId);
-// }
+  };
+};
